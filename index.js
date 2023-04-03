@@ -3,6 +3,7 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 const fs = require("fs");
+const client = require("./db.postgress");
 
 async function performScraping() {
   // downloading the target web page
@@ -168,6 +169,22 @@ async function performScrapingkraina_kazok() {
   const scrapedDataJSON = JSON.stringify(scrapedData);
 
   fs.writeFileSync("avtotreki-garazhi.json", scrapedDataJSON);
+
+  client.connect();
+
+  let insertQuery =
+    "INSERT INTO products (product_name, product_price) values ";
+  scrapedData.products.forEach((p, i) => {
+    insertQuery += `('${p.product_name}', '${parseFloat(p.product_price)}')`;
+
+    if (i === scrapedData.products.length - 1) {
+      insertQuery += ";";
+    } else {
+      insertQuery += ",";
+    }
+  });
+
+  client.query(insertQuery, () => client.end());
 }
 
 performScrapingkraina_kazok();
