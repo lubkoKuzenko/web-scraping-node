@@ -114,7 +114,7 @@ async function performScraping() {
   // converting the scraped data object to JSON
   const scrapedDataJSON = JSON.stringify(scrapedData);
 
-  fs.writeFileSync("file.json", scrapedDataJSON);
+  fs.writeFileSync("data/file.json", scrapedDataJSON);
 
   // storing scrapedDataJSON in a database via an API call...
 }
@@ -168,7 +168,7 @@ async function performScrapingkraina_kazok() {
   // converting the scraped data object to JSON
   const scrapedDataJSON = JSON.stringify(scrapedData);
 
-  fs.writeFileSync("avtotreki-garazhi.json", scrapedDataJSON);
+  fs.writeFileSync("data/avtotreki-garazhi.json", scrapedDataJSON);
 
   client.connect();
 
