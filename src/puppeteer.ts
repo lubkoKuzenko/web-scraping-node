@@ -40,7 +40,6 @@ async function main() {
 
   let index: number = 0;
   const scrapedData: ScrapedDataType[] = [];
-
   for (const link of links) {
     console.log(`Script in progress ${(links.length * index) / 100}%`);
 
