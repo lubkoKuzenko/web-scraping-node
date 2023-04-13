@@ -3,6 +3,7 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 const fs = require("fs");
+
 const client = require("./db.postgress");
 
 async function performScraping() {
@@ -32,12 +33,8 @@ async function performScraping() {
     .each((index, element) => {
       // extracting the data of interest
       const pageUrl = $(element).attr("href");
-      const image = $(element)
-        .find(".elementor-image-box-img img")
-        .attr("data-lazy-src");
-      const name = $(element)
-        .find(".elementor-image-box-content .elementor-image-box-title")
-        .text();
+      const image = $(element).find(".elementor-image-box-img img").attr("data-lazy-src");
+      const name = $(element).find(".elementor-image-box-content .elementor-image-box-title").text();
 
       // filtering out not interesting data
       if (name && pageUrl) {
@@ -61,13 +58,9 @@ async function performScraping() {
     .find(".elementor-widget")
     .each((index, element) => {
       // extracting the data of interest
-      const image = $(element)
-        .find(".elementor-image-box-img img")
-        .attr("data-lazy-src");
+      const image = $(element).find(".elementor-image-box-img img").attr("data-lazy-src");
       const title = $(element).find(".elementor-image-box-title").text();
-      const description = $(element)
-        .find(".elementor-image-box-description")
-        .text();
+      const description = $(element).find(".elementor-image-box-description").text();
 
       // converting the data extracted into a more
       // readable object
@@ -172,8 +165,7 @@ async function performScrapingkraina_kazok() {
 
   client.connect();
 
-  let insertQuery =
-    "INSERT INTO products (product_name, product_price) values ";
+  let insertQuery = "INSERT INTO products (product_name, product_price) values ";
   scrapedData.products.forEach((p, i) => {
     insertQuery += `('${p.product_name}', '${parseFloat(p.product_price)}')`;
 
@@ -186,5 +178,3 @@ async function performScrapingkraina_kazok() {
 
   client.query(insertQuery, () => client.end());
 }
-
-performScrapingkraina_kazok();
