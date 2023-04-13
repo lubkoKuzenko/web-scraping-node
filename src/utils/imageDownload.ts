@@ -10,7 +10,7 @@ export const imageDownload = async (imageUrl: string) => {
   try {
     const { filePath, downloadStatus } = await downloader.download(); //Downloader.download() resolves with some useful properties.
 
-    console.log("All done");
+    // console.log("All done");
   } catch (error) {
     //IMPORTANT: Handle a possible error. An error is thrown in case of network errors, or status codes of 400 and above.
     //Note that if the maxAttempts is set to higher than 1, the error is thrown only if all attempts fail.

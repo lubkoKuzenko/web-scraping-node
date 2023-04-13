@@ -1,21 +1,22 @@
 import { Browser, Page } from "puppeteer";
 import { ScrapedDataType } from "./interfaces";
+import { selectors } from "./selectors";
 import { imageDownload } from "./utils/imageDownload";
 import { writeFileSyncRecursive } from "./utils/writeFileSyncRecursive";
 
 const puppeteer = require("puppeteer");
 
 async function getLinks(page: Page): Promise<string[]> {
-  return await page.$$eval(".product_pod h3 a", (elements) => elements.map((e) => e.href));
+  return await page.$$eval(selectors.book_link, (elements) => elements.map((e) => (e as HTMLAnchorElement).href));
 }
 
 async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType> {
   await page.goto(url);
 
-  const title = await page.$eval(".product_main h1", (el) => el.textContent);
-  const price = await page.$eval(".product_main .price_color", (el) => el.textContent);
-  const availability = await page.$eval(".product_main .availability", (el) => (el as HTMLElement).innerText);
-  const image = await page.$eval("#product_gallery .thumbnail img", (el) => el.src);
+  const title = await page.$eval(selectors.book_title, (el) => el.textContent);
+  const price = await page.$eval(selectors.book_price, (el) => el.textContent);
+  const availability = await page.$eval(selectors.book_availability, (el) => (el as HTMLElement).innerText);
+  const image = await page.$eval(selectors.book_thumbnail, (el) => (el as HTMLImageElement).src);
 
   imageDownload(image);
 
@@ -29,24 +30,24 @@ async function main() {
 
   let links: string[] = [];
   let pageNumber: number = 1;
-  while ((await page.$(".pager .next a")) && pageNumber <= 2) {
+  while ((await page.$(selectors.pagination_next_button)) && pageNumber <= 2) {
     links = [...links, ...(await getLinks(page))];
 
     console.log(`Total links found:  ${links.length}. Current page is: ${pageNumber}`);
 
     pageNumber++;
-    await Promise.all([page.waitForNavigation(), page.click(".pager .next a")]);
+    await Promise.all([page.waitForNavigation(), page.click(selectors.pagination_next_button)]);
   }
 
   let index: number = 0;
   const scrapedData: ScrapedDataType[] = [];
   for (const link of links) {
-    console.log(`Script in progress ${(links.length * index) / 100}%`);
+    index++;
+    //${(links.length * index) / 100}
+    console.log(`Script in progress ${(100 * index) / links.length}%`);
 
     const data: ScrapedDataType = await getPageDetails(page, link);
     scrapedData.push(data);
-
-    index++;
   }
 
   // converting the scraped data object to JSON
