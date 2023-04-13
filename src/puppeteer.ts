@@ -1,20 +1,12 @@
 import { Browser, Page } from "puppeteer";
+import { ScrapedDataType } from "./interfaces";
+import { imageDownload } from "./utils/imageDownload";
 import { writeFileSyncRecursive } from "./utils/writeFileSyncRecursive";
 
-const fs = require("fs");
 const puppeteer = require("puppeteer");
-const Downloader = require("nodejs-file-downloader");
-
-interface ScrapedDataType {
-  title: string | null;
-  price: string | null;
-  availability: string | null;
-}
 
 async function getLinks(page: Page): Promise<string[]> {
-  const allLinks = await page.$$eval(".product_pod h3 a", (elements) => elements.map((e) => e.href));
-
-  return allLinks;
+  return await page.$$eval(".product_pod h3 a", (elements) => elements.map((e) => e.href));
 }
 
 async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType> {
@@ -25,25 +17,9 @@ async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType>
   const availability = await page.$eval(".product_main .availability", (el) => (el as HTMLElement).innerText);
   const image = await page.$eval("#product_gallery .thumbnail img", (el) => el.src);
 
-  downloadImage(image);
+  imageDownload(image);
 
   return { title, price, availability };
-}
-
-async function downloadImage(imageUrl: string) {
-  const downloader = new Downloader({
-    url: imageUrl, //If the file name already exists, a new file with the name 200MB1.zip is created.
-    directory: "./build/downloads", //This folder will be created, if it doesn't exist.
-  });
-  try {
-    const { filePath, downloadStatus } = await downloader.download(); //Downloader.download() resolves with some useful properties.
-
-    console.log("All done");
-  } catch (error) {
-    //IMPORTANT: Handle a possible error. An error is thrown in case of network errors, or status codes of 400 and above.
-    //Note that if the maxAttempts is set to higher than 1, the error is thrown only if all attempts fail.
-    console.log("Download failed", error);
-  }
 }
 
 async function main() {
@@ -85,8 +61,3 @@ async function main() {
 }
 
 main();
-
-// JavaScript/TypeScript
-// Node.js
-// Web scraping experience is preferable (Puppeteer, Nightmare, Cheerio, etc.)
-// SQL (MySQL, PostgreSQL) or NoSQL (MongoDB)

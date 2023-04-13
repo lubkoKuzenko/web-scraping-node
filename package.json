@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "cleanup": "rimraf ./data",
-    "build": "npm run cleanup && rimraf ./build && tsc --outDir build",
+    "build": "rimraf ./build && tsc --outDir build",
     "start": "npm run build && node build/puppeteer.js"
   },
   "keywords": [],
