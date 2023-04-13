@@ -25,7 +25,7 @@ async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType>
   const availability = await page.$eval(".product_main .availability", (el) => (el as HTMLElement).innerText);
   const image = await page.$eval("#product_gallery .thumbnail img", (el) => el.src);
 
-  //   downloadImage(image);
+  downloadImage(image);
 
   return { title, price, availability };
 }
@@ -33,7 +33,7 @@ async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType>
 async function downloadImage(imageUrl: string) {
   const downloader = new Downloader({
     url: imageUrl, //If the file name already exists, a new file with the name 200MB1.zip is created.
-    directory: "./downloads", //This folder will be created, if it doesn't exist.
+    directory: "./build/downloads", //This folder will be created, if it doesn't exist.
   });
   try {
     const { filePath, downloadStatus } = await downloader.download(); //Downloader.download() resolves with some useful properties.
