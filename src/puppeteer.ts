@@ -43,7 +43,6 @@ async function main() {
   const scrapedData: ScrapedDataType[] = [];
   for (const link of links) {
     index++;
-    //${(links.length * index) / 100}
     console.log(`Script in progress ${(100 * index) / links.length}%`);
 
     const data: ScrapedDataType = await getPageDetails(page, link);
