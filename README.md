@@ -1,8 +1,10 @@
 ## Technical stack
 
 ```js
-JavaScript/TypeScript
-Node.js
-Web scraping experience is preferable (Puppeteer, Nightmare, Cheerio, etc.)
-SQL (MySQL, PostgreSQL) or NoSQL (MongoDB)
+Web scraping application
+
+`Node.js`
+`Cheerio` example written in `JavaScript`
+`Puppeteer` example written in `TypeScript`
+`SQL` - `PostgreSQL`
 ```
