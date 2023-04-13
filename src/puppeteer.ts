@@ -1,4 +1,5 @@
 import { Browser, Page } from "puppeteer";
+import { config } from "./config/config";
 import { ScrapedDataType } from "./interfaces";
 import { selectors } from "./selectors";
 import { imageDownload } from "./utils/imageDownload";
@@ -26,7 +27,7 @@ async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType>
 async function main() {
   const browser: Browser = await puppeteer.launch({ headless: true });
   const page: Page = await browser.newPage();
-  await page.goto("http://books.toscrape.com/");
+  await page.goto(config.baseURL);
 
   let links: string[] = [];
   let pageNumber: number = 1;
