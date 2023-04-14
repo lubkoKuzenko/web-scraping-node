@@ -5,7 +5,14 @@ import { selectors } from "./selectors";
 import { imageDownload } from "./utils/imageDownload";
 import { writeFileSyncRecursive } from "./utils/writeFileSyncRecursive";
 
-const puppeteer = require("puppeteer");
+// puppeteer-extra is a drop-in replacement for puppeteer,
+// it augments the installed puppeteer with plugin functionality
+import puppeteer from "puppeteer-extra";
+
+// add stealth plugin and use defaults (all evasion techniques)
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
+
+puppeteer.use(StealthPlugin());
 
 async function getLinks(page: Page): Promise<string[]> {
   return await page.$$eval(selectors.book_link, (elements) => elements.map((e) => (e as HTMLAnchorElement).href));
@@ -27,7 +34,7 @@ async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType>
 async function main() {
   const browser: Browser = await puppeteer.launch({ headless: true });
   const page: Page = await browser.newPage();
-  await page.goto(config.baseURL);
+  await page.goto(config.botCheckURL);
 
   let links: string[] = [];
   let pageNumber: number = 1;

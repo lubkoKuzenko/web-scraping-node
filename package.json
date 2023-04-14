@@ -15,7 +15,9 @@
     "fs": "^0.0.1-security",
     "nodejs-file-downloader": "^4.11.0",
     "pg": "^8.10.0",
-    "puppeteer": "^19.8.5"
+    "puppeteer": "^19.8.5",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
