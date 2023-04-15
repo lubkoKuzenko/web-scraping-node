@@ -2,8 +2,7 @@ import { Browser, HTTPResponse, Page } from "puppeteer";
 import { config } from "./config/config";
 import { ScrapedDataType } from "./interfaces";
 import { selectors } from "./selectors";
-import { imageDownload } from "./utils/imageDownload";
-import { writeFileSyncRecursive } from "./utils/writeFileSyncRecursive";
+import { imageDownload, writeFileSyncRecursive, scrapApiEndpoint } from "./utils";
 
 // puppeteer-extra is a drop-in replacement for puppeteer,
 // it augments the installed puppeteer with plugin functionality
@@ -29,14 +28,6 @@ async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType>
   imageDownload(image);
 
   return { title, price, availability };
-}
-
-async function scrapApiEndpoint(page: Page, endpoint: string) {
-  const [res] = await Promise.all([
-    page.waitForResponse((res) => res.url() === endpoint, { timeout: 90000 }),
-    page.goto(endpoint, { waitUntil: "domcontentloaded" }),
-  ]);
-  console.log(await res.json());
 }
 
 async function main() {
