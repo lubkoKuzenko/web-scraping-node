@@ -34,7 +34,7 @@ async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType>
 async function main() {
   const browser: Browser = await puppeteer.launch({ headless: true });
   const page: Page = await browser.newPage();
-  await page.goto(config.baseURL);
+  await page.goto(config.baseURL, { waitUntil: "load" });
 
   let links: string[] = [];
   let pageNumber: number = 1;
