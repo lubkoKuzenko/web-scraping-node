@@ -32,10 +32,9 @@ async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType>
 }
 
 async function scrapApiEndpoint(page: Page) {
-  const url = config.apiEndpoint;
   const [res] = await Promise.all([
-    page.waitForResponse((res) => res.url() === url, { timeout: 90000 }),
-    page.goto(url, { waitUntil: "domcontentloaded" }),
+    page.waitForResponse((res) => res.url() === config.apiEndpoint, { timeout: 90000 }),
+    page.goto(config.apiEndpoint, { waitUntil: "domcontentloaded" }),
   ]);
   console.log(await res.json());
 }
