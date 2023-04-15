@@ -31,10 +31,10 @@ async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType>
   return { title, price, availability };
 }
 
-async function scrapApiEndpoint(page: Page) {
+async function scrapApiEndpoint(page: Page, endpoint: string) {
   const [res] = await Promise.all([
-    page.waitForResponse((res) => res.url() === config.apiEndpoint, { timeout: 90000 }),
-    page.goto(config.apiEndpoint, { waitUntil: "domcontentloaded" }),
+    page.waitForResponse((res) => res.url() === endpoint, { timeout: 90000 }),
+    page.goto(endpoint, { waitUntil: "domcontentloaded" }),
   ]);
   console.log(await res.json());
 }
@@ -44,7 +44,7 @@ async function main() {
   const page: Page = await browser.newPage();
   await page.goto(config.baseURL, { waitUntil: "load" });
 
-  // await scrapApiEndpoint(page);
+  // await scrapApiEndpoint(page, config.apiEndpoint);
 
   let links: string[] = [];
   let pageNumber: number = 1;
