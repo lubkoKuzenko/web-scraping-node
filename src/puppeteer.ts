@@ -1,4 +1,4 @@
-import { Browser, Page } from "puppeteer";
+import { Browser, HTTPResponse, Page } from "puppeteer";
 import { config } from "./config/config";
 import { ScrapedDataType } from "./interfaces";
 import { selectors } from "./selectors";
@@ -31,10 +31,21 @@ async function getPageDetails(page: Page, url: string): Promise<ScrapedDataType>
   return { title, price, availability };
 }
 
+async function scrapApiEndpoint(page: Page) {
+  const url = "https://jsonplaceholder.typicode.com/posts";
+  const [res] = await Promise.all([
+    page.waitForResponse((res) => res.url() === url, { timeout: 90000 }),
+    page.goto(url, { waitUntil: "domcontentloaded" }),
+  ]);
+  console.log(await res.json());
+}
+
 async function main() {
   const browser: Browser = await puppeteer.launch({ headless: true });
   const page: Page = await browser.newPage();
   await page.goto(config.baseURL, { waitUntil: "load" });
+
+  // await scrapApiEndpoint(page);
 
   let links: string[] = [];
   let pageNumber: number = 1;
