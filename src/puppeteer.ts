@@ -2,7 +2,7 @@ import { Browser, HTTPResponse, Page } from "puppeteer";
 import { config } from "./config/config";
 import { ScrapedDataType } from "./interfaces";
 import { selectors } from "./selectors";
-import { imageDownload, writeFileSyncRecursive, scrapApiEndpoint } from "./utils";
+import { imageDownload, writeFileSyncRecursive, scrapApiEndpoint, makeScreenshot } from "./utils";
 
 // puppeteer-extra is a drop-in replacement for puppeteer,
 // it augments the installed puppeteer with plugin functionality
@@ -35,7 +35,21 @@ async function main() {
   const page: Page = await browser.newPage();
   await page.goto(config.baseURL, { waitUntil: "load" });
 
-  // await scrapApiEndpoint(page, config.apiEndpoint);
+  await makeScreenshot(page, "test");
+
+  // scrap list of elements
+  // const list = await page.$$eval("div[data-behat-search-results-lg] li", (elements: HTMLElement[]) => {
+  //   return elements.map((element) => {
+  //     const title = element.querySelector(".v2-listing-card__info h3")?.textContent || "";
+  //     const url = element.querySelector(".v2-listing-card__info .lc-price .currency-value")?.textContent || "";
+
+  //     return { title, url };
+  //   });
+  // });
+
+  // const scrapedDataJSON: string = JSON.stringify(list);
+
+  await scrapApiEndpoint(page, config.apiEndpoint);
 
   let links: string[] = [];
   let pageNumber: number = 1;
