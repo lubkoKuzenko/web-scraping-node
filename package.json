@@ -1,17 +1,14 @@
 {
-  "name": "web-scraping-node",
+  "name": "node-typescript-starter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node project starter with Typescript, ESLint and Prettier",
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
-    "build": "rimraf ./build && tsc --outDir build",
-    "start": "npm run build && node build/puppeteer.js"
+    "start": "nodemon --watch \"*.ts\" --exec \"ts-node\" ./src/index.ts",
+    "eslint:fix": "eslint --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "axios": "^1.3.4",
-    "cheerio": "^1.0.0-rc.12",
     "fs": "^0.0.1-security",
     "nodejs-file-downloader": "^4.11.0",
     "pg": "^8.10.0",
@@ -21,8 +18,16 @@
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
     "@types/puppeteer": "^7.0.4",
-    "rimraf": "^5.0.0",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-sort-destructure-keys": "^1.5.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.7",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   }
 }

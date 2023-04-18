@@ -1,1 +1,1 @@
-export * from "./toscrape";
+export * from './toscrape';

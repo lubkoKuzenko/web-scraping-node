@@ -1,33 +1,16 @@
-const fs = require("fs");
+import fs, { ObjectEncodingOptions, WriteFileOptions } from 'fs';
+import path from 'path';
 
-export const writeFileSyncRecursive = async (filename: string, content: any, charset: string = "utf8") => {
-  // -- normalize path separator to '/' instead of path.sep,
-  // -- as / works in node for Windows as well, and mixed \\ and / can appear in the path
-  let filepath = filename.replace(/\\/g, "/");
+export const writeFileSyncRecursive = async (filename: string, content: any) => {
+  // The file path to save the JSON object to
+  const filePath = path.join('build/data', `${filename}.json`);
 
-  // -- preparation to allow absolute paths as well
-  let root = "";
-  if (filepath[0] === "/") {
-    root = "/";
-    filepath = filepath.slice(1);
-  } else if (filepath[1] === ":") {
-    root = filepath.slice(0, 3); // c:\
-    filepath = filepath.slice(3);
+  // Create the directory if it doesn't exist
+  const dirPath = path.dirname(filePath);
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
   }
 
-  // -- create folders all the way down
-  const folders = filepath.split("/").slice(0, -1); // remove last item, file
-  folders.reduce(
-    (acc, folder) => {
-      const folderPath = acc + folder + "/";
-      if (!fs.existsSync(folderPath)) {
-        fs.mkdirSync(folderPath);
-      }
-      return folderPath;
-    },
-    root, // first 'acc', important
-  );
-
-  // -- write file
-  fs.writeFileSync(root + filepath, content, charset);
+  // Save the JSON object to the file
+  fs.writeFileSync(filePath, JSON.stringify(content));
 };
