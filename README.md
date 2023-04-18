@@ -1,18 +1,10 @@
-# Node Typescript Starter
+## Technical stack
 
-This project contains a minimal starter for Node.js project with Typescript, ESLint and Prettier already configured
+```js
+Web scraping application
 
-## Prerequisites
-- Node.js 10+
-- Yarn or NPM
-
-## Installation
-- Install dependencies
-```bash
-yarn install
+Node.js
+Cheerio example written in JavaScript
+Puppeteer example written in TypeScript
+PostgreSQL
 ```
-- Start Application
-```bash
-yarn start
-```
-The application will be launched by [Nodemon](https://nodemon.com) so it's will restart automatically on file change
