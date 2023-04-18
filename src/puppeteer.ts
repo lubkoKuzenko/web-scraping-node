@@ -49,33 +49,33 @@ async function main() {
 
   // const scrapedDataJSON: string = JSON.stringify(list);
 
-  await scrapApiEndpoint(page, config.apiEndpoint);
+  // await scrapApiEndpoint(page, config.apiEndpoint);
 
-  let links: string[] = [];
-  let pageNumber: number = 1;
-  while ((await page.$(selectors.pagination_next_button)) && pageNumber <= 2) {
-    links = [...links, ...(await getLinks(page))];
+  // let links: string[] = [];
+  // let pageNumber: number = 1;
+  // while ((await page.$(selectors.pagination_next_button)) && pageNumber <= 2) {
+  //   links = [...links, ...(await getLinks(page))];
 
-    console.log(`Total links found:  ${links.length}. Current page is: ${pageNumber}`);
+  //   console.log(`Total links found:  ${links.length}. Current page is: ${pageNumber}`);
 
-    pageNumber++;
-    await Promise.all([page.waitForNavigation(), page.click(selectors.pagination_next_button)]);
-  }
+  //   pageNumber++;
+  //   await Promise.all([page.waitForNavigation(), page.click(selectors.pagination_next_button)]);
+  // }
 
-  let index: number = 0;
-  const scrapedData: ScrapedDataType[] = [];
-  for (const link of links) {
-    index++;
-    console.log(`Script in progress ${(100 * index) / links.length}%`);
+  // let index: number = 0;
+  // const scrapedData: ScrapedDataType[] = [];
+  // for (const link of links) {
+  //   index++;
+  //   console.log(`Script in progress ${(100 * index) / links.length}%`);
 
-    const data: ScrapedDataType = await getPageDetails(page, link);
-    scrapedData.push(data);
-  }
+  //   const data: ScrapedDataType = await getPageDetails(page, link);
+  //   scrapedData.push(data);
+  // }
 
-  // converting the scraped data object to JSON
-  const scrapedDataJSON: string = JSON.stringify(scrapedData);
+  // // converting the scraped data object to JSON
+  // const scrapedDataJSON: string = JSON.stringify(scrapedData);
 
-  writeFileSyncRecursive("build/data/toscrape.com.json", scrapedDataJSON, "utf8");
+  // writeFileSyncRecursive("build/data/toscrape.com.json", scrapedDataJSON, "utf8");
 
   await browser.close();
 
