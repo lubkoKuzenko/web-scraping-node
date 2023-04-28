@@ -29,6 +29,10 @@ For example with `https://anti-captcha.com/demo/?page=recaptcha_v3_submit_03` we
 
 <img src="./images/reCAPTCHA V3.png" />
 
+## How BE verify user response
+
+https://developers.google.com/recaptcha/docs/verify
+
 ## Examples
 
 `puppeteer` - https://github.com/AdminAnticaptcha/solving-captcha-concepts/blob/master/tutorial6.js
