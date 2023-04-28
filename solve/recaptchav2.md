@@ -44,6 +44,12 @@ In case when submit button has dynamic id we can use more generic selector.
 document.querySelector('input[type="submit"]');
 ```
 
+or
+
+```js
+self.page.click("input[type="submit"]");
+```
+
 ## Python code example
 
 https://github.com/Binit-Dhakal/Google-reCAPTCHA-v2-solver-using-playwright-python/blob/main/main.py
