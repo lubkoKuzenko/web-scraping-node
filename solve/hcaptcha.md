@@ -7,6 +7,7 @@ https://accounts.hcaptcha.com/demo
 ## How to solve
 
 https://2captcha.com/demo/hcaptcha?difficulty=always-on
+https://docs.capsolver.com/guide/captcha/HCaptcha.html
 
 Locate the element with name `h-captcha-response` and use javascript to set the value of `h-captcha-response` field.
 

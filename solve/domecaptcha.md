@@ -12,6 +12,10 @@ https://scrapfly.io/blog/how-to-bypass-datadome-anti-scraping/
 
 https://medium.com/@campo1312/how-to-detect-block-and-manage-datadome-c6e94c74a4f4
 
+## How to solve
+
+https://docs.capsolver.com/guide/antibots/datadome.html
+
 ## Repo with python example
 
 https://github.com/campo1312/DataDome/

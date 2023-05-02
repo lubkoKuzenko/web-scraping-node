@@ -8,6 +8,7 @@ https://2captcha.com/demo/geetest
 ## How to solve GeeTest V3
 
 https://2captcha.com/2captcha-api#solving_geetest
+https://docs.capsolver.com/guide/captcha/Geetest.html
 
 If captcha is already solved server will return the response in JSON. The response contains three values: `challenge`, `validate` and `seccode`:
 
