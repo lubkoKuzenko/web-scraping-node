@@ -2,7 +2,7 @@
 
 ## Demo page
 
--
+https://client-demo.arkoselabs.com/solo-animals
 
 ## How it works
 
@@ -31,3 +31,5 @@ document.querySelector('input[name="fc-token"]');
 // update value
 document.querySelector('input[name="fc-token"]').value = "test";
 ```
+
+I found 2 field with id `verification-token` and `FunCaptcha-Token`. Later values from this field send to verify request. So maybe both are required.
