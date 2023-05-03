@@ -6,11 +6,11 @@ https://geo.captcha-delivery.com/captcha/?initialCid=AHrlqAAAAAMA1QGvUmJwyYoAwpy
 
 ## How it works
 
+https://medium.com/@campo1312/how-to-detect-block-and-manage-datadome-c6e94c74a4f4
+
 https://datadome.co/bot-management-protection/how-to-detect-block-manage-sneaker-bots/
 
 https://scrapfly.io/blog/how-to-bypass-datadome-anti-scraping/
-
-https://medium.com/@campo1312/how-to-detect-block-and-manage-datadome-c6e94c74a4f4
 
 ## How to solve
 
