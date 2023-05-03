@@ -14,6 +14,14 @@ https://medium.com/@campo1312/how-to-detect-block-and-manage-datadome-c6e94c74a4
 
 ## How to solve
 
+If it is all good, the server will respond with 200 as status code and something like this as header
+
+```json
+set-cookie: datadome=Tdx_AVi.VpcPns7JD7n9~EedCazO2jmhdrv_5Hhxmg3ZnUB4iHxn1OE0pum84C2RrSAm_Tnbf7VfF-6.Kfy_XQGeYZBFPwQkbn2~xSmO0J; Max-Age=31536000; Domain=.captcha-delivery.com; Path=/; SameSite=Lax
+```
+
+Looks like we need just to update cookie key `datadome` and captch will be solved.
+
 https://docs.capsolver.com/guide/antibots/datadome.html
 
 ## Repo with python example
