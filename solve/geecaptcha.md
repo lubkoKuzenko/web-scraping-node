@@ -28,19 +28,19 @@ For GeeTest v3 use the values received from our API to update `geetest_form`.
 // selector to select challenge input
 document.querySelector('input[name="geetest_challenge"]');
 
-// update
+// update challenge input
 document.querySelector('input[name="geetest_challenge"]').value = "challenge test";
 
-// selector to select validate input
+// selector to select
 document.querySelector('input[name="geetest_validate"]');
 
-// update
+// update validate input
 document.querySelector('input[name="geetest_validate"]').value = "validate test";
 
-// selector to select seccode input
+// selector to select
 document.querySelector('input[name="geetest_seccode"]');
 
-// update
+// update seccode input
 document.querySelector('input[name="geetest_seccode"]').value = "seccode test";
 ```
 
