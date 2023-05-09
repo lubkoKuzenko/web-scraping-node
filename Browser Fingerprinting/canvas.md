@@ -29,4 +29,4 @@ Example: `8434ef957c0adc6db8d75ecff593ad2b`
 
 ## Code Example
 
-<a href="./canvas_example/index.html">Source</a>
+<a href="./canvas_example/index.html">Source code</a>
