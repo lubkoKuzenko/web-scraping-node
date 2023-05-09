@@ -6,6 +6,8 @@ WebGL is a JavaScript API for rendering interactive 2D and 3D graphics. The meth
 
 ## How it works
 
+https://privacycheck.sec.lrz.de/active/fp_wg/fp_webgl.html
+
 ## How https://coveryourtracks.eff.org/ detect canvas fingerprint
 
 1. Have dependency for `Fingerprintjs2` and uses his code to have hash. This code is available on `code example` folder.

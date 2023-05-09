@@ -10,6 +10,8 @@ Canvas fingerprinting is invisible to the user. A tracker can create a “canvas
 
 https://browserleaks.com/canvas#how-does-it-work
 
+https://fingerprint.com/blog/canvas-fingerprinting/
+
 https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL
 
 ## How https://coveryourtracks.eff.org/ detect canvas fingerprint
