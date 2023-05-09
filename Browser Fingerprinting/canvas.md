@@ -3,6 +3,7 @@
 ## How it works
 
 https://browserleaks.com/canvas#how-does-it-work
+
 https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL
 
 ## Code Example
