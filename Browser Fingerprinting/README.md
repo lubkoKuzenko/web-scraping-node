@@ -5,3 +5,4 @@
 - [Canvas fingerprinting](./canvas.md)
 - [WebGL fingerprinting](./WebGL.md)
 - [AudioContext Fingerprinting](./AudioContext.md)
+- [Fonts Fingerprinting](./FontsDetection.md)
