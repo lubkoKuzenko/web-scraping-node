@@ -23,4 +23,9 @@ https://lwthiker.com/networks/2022/06/17/http2-fingerprinting.html
 
 ## HTTP Headers Order per browser
 
+In consequence of this specification, different vendors, i.e. applications, e.g., browsers, send request headers in a different order because there was no agreement on a specific order. As a result of this arbitrariness in defining a request Header order by each vendor which was then used in different applications, there are different Header Signatures. The header order cannot be changed in the browser settings, which means a signature cannot be spoofed by the user.
+
+The header order of each browser is fixed and cannot be changed in the browser settings.
+This means the browser user cannot spoof its browser signature
+
 <a href="./http headers/headers order.json">Headers Order per browser</a>
