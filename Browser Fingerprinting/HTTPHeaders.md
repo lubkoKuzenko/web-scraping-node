@@ -20,3 +20,7 @@ https://lwthiker.com/networks/2022/06/17/http2-fingerprinting.html
 ## HTTP Headers Example
 
 <a href="./http headers/My_browser_fingerprint.json">My_browser_fingerprint_Example</a>
+
+## HTTP Headers Order per browser
+
+<a href="./http headers/headers order.json">Headers Order per browser</a>
